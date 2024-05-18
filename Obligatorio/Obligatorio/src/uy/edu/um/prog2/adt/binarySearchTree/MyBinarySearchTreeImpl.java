@@ -1,6 +1,4 @@
-package TADs.binarySearchTree.Entities;
-
-import Exceptions.NodoNoExiste;
+package uy.edu.um.prog2.adt.binarySearchTree;
 
 public class MyBinarySearchTreeImpl<K extends Comparable<K>,T> implements MyBinarySearchTree<K,T>{
     NodeBST<K,T> root;

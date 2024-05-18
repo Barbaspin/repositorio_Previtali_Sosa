@@ -1,7 +1,7 @@
-package TADs.linkedlist;
+package uy.edu.um.prog2.adt.linkedlist;
 import Exceptions.*;
-import TADs.queue.MyQueue;
-import TADs.stack.MyStack;
+import uy.edu.um.prog2.adt.queue.MyQueue;
+import uy.edu.um.prog2.adt.stack.MyStack;
 
 public class MyLinkedListImpl<T> implements MyList<T>, MyQueue<T>, MyStack<T> {
 

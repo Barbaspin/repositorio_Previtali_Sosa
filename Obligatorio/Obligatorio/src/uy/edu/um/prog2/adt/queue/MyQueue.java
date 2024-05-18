@@ -1,4 +1,4 @@
-package TADs.queue;
+package uy.edu.um.prog2.adt.queue;
 import Exceptions.*;
 
 public interface MyQueue<T> {

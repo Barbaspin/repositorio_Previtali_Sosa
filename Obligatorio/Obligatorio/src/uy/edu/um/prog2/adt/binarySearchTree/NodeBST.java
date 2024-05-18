@@ -1,6 +1,4 @@
-package TADs.binarySearchTree.Entities;
-import Exceptions.NodoNoExiste;
-
+package uy.edu.um.prog2.adt.binarySearchTree;
 import java.util.Objects;
 
 public class NodeBST<K extends Comparable<K>,T> {
