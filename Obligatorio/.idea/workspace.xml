@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Obligatorio.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Obligatorio.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrdenarCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrdenarCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spotify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spotify.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTableImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTableImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2h3JpEHLvFKRrRIkFXUwHgPiQzp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,6 +43,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/aless/repositorio_git/repositorio_Previtali_Sosa/Obligatorio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -36,7 +55,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-21.0.2-openjdk-21.0.2-4caba194b151-4f524021" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
       </set>
     </attachedChunks>
   </component>
@@ -49,6 +69,8 @@
       <option name="presentableId" value="Default" />
       <updated>1716817008819</updated>
       <workItem from="1716817009967" duration="16000" />
+      <workItem from="1718463920085" duration="172000" />
+      <workItem from="1718464101597" duration="11891000" />
     </task>
     <servers />
   </component>

@@ -121,6 +121,16 @@ public class HashTableImpl<K,V> implements HashTable<K,V>{
         this.setFactor( ( (float) this.getCantidadAgregados() )/this.getArrayHash().length);
     }
 
+    @Override
+    public V get(K key) {
+        int posicion =searchPosicion(key);
+        if (posicion==-1){
+            return null;
+        }
+
+        return arrayHash[posicion].getValue();
+    }
+
 
     public int searchPosicion(K key){
         Node<K,V> nodoTemp = new Node<>(key,null);
