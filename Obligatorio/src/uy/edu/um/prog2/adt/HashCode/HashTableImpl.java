@@ -4,6 +4,8 @@ import javax.print.attribute.standard.NumberOfDocuments;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import static java.lang.Math.abs;
+
 public class HashTableImpl<K,V> implements HashTable<K,V>{
 
     private Node<K,V>[] arrayHash;
@@ -26,7 +28,7 @@ public class HashTableImpl<K,V> implements HashTable<K,V>{
     public void put(K key, V value) {
         Node<K,V> tempNodo = new Node<>(key,value);
         Node<K,V>[] arrayH =this.getArrayHash();
-        int hashNodo =tempNodo.getKey().hashCode()%(arrayH.length);
+        int hashNodo =abs(tempNodo.getKey().hashCode())%(arrayH.length);
         // tenemos el nodo que vamos a agregar, y la posicion en la que hay que agregarlo
 
         if (this.getFactor()<0.8){
@@ -83,6 +85,7 @@ public class HashTableImpl<K,V> implements HashTable<K,V>{
         //actualizamos la cantidad de agregados y el factor
         this.setCantidadAgregados(this.getCantidadAgregados()+1);
         this.setFactor( ( (float) this.getCantidadAgregados() )/this.getArrayHash().length);
+        System.out.println("agregado" + key.toString());
     }
 
 
@@ -135,7 +138,7 @@ public class HashTableImpl<K,V> implements HashTable<K,V>{
     public int searchPosicion(K key){
         Node<K,V> nodoTemp = new Node<>(key,null);
         Node<K,V>[] arrayH =this.getArrayHash();
-        int pos_hash = nodoTemp.getKey().hashCode()%arrayH.length;
+        int pos_hash = abs(nodoTemp.getKey().hashCode())%arrayH.length;
 
         if (arrayH[pos_hash]==null){
             return -1;

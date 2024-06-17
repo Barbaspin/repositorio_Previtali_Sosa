@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Obligatorio.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Obligatorio.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LeerCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeerCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OrdenarCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrdenarCSV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Spotify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spotify.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTableImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTableImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +31,9 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2h3JpEHLvFKRrRIkFXUwHgPiQzp" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -39,6 +41,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.LeerCSV.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Spotify.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
@@ -52,6 +57,25 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aless\repositorio_git\repositorio_Previtali_Sosa\Obligatorio" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Obligatorio" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -71,6 +95,8 @@
       <workItem from="1716817009967" duration="16000" />
       <workItem from="1718463920085" duration="172000" />
       <workItem from="1718464101597" duration="11891000" />
+      <workItem from="1718625209223" duration="22000" />
+      <workItem from="1718629460479" duration="4983000" />
     </task>
     <servers />
   </component>

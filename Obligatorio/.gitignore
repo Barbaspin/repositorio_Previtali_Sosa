@@ -3,6 +3,8 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
+universal_top_spotify_songs.csv
+
 ### Eclipse ###
 .apt_generated
 .classpath

@@ -13,13 +13,13 @@ public class LeerCSV {
     public LeerCSV() {
 //        datos = new ArrayList<>();
         datos = new MyLinkedListImpl<>();
-        String inputFilePath = "C:\\Users\\aless\\universal_top_spotify_songs.csv"; // Ruta del archivo CSV de entrada
+        String inputFilePath = "universal_top_spotify_songs.csv"; // Ruta del archivo CSV de entrada
 
         try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath))) {
             String line;
             while ((line = br.readLine()) != null) {
 //              String[] values = line.split("\",\"");
-                String[] values = line.split(",");
+                String[] values = line.split("\",\"");
 //                List<String> fila = new ArrayList<>();
                 MyLinkedListImpl<String> fila = new MyLinkedListImpl<>();
                 for (String value : values) {
