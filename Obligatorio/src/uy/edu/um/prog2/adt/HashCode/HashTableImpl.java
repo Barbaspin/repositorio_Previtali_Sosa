@@ -173,6 +173,11 @@ public class HashTableImpl<K,V> implements HashTable<K,V>{
 
     }
 
+    public void changeValue(K key,V value){
+        int posicion = searchPosicion(key);
+        Node<K,V> nuevoNodo = new Node<>(key,value);
+        this.getArrayHash()[posicion] = nuevoNodo;
+    }
 
 
 

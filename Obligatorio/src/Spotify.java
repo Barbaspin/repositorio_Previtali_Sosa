@@ -4,6 +4,7 @@ import uy.edu.um.prog2.adt.HashCode.Node;
 import uy.edu.um.prog2.adt.linkedlist.MyLinkedListImpl;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Spotify {
@@ -44,31 +45,93 @@ public class Spotify {
     }
 
 
-    public void consultaMasTop50(String fecha){
-        MyLinkedListImpl<Cancion> cancionesFecha =ord.getHashFechas().get(fecha);
-        Node<String,Integer> nodo = new Node<>(null,null);
-        HashTableImpl<String,Integer> cantidadRepetidos = new HashTableImpl<>(nodo,100);
-        for (int i = 0; i < cancionesFecha.size(); i++){
+    public void consultaMasTop50(String fecha) {
+        //conseguimos la lista de canciones en esa fecha
+        MyLinkedListImpl<Cancion> cancionesFecha = ord.getHashFechas().get(fecha);
+        //creamos un hash con la cantidad de veces que se repite cada cancion en el top 50
+        Node<String, Integer> nodo = new Node<>(null, null);
+        HashTableImpl<String, Integer> cantidadRepetidos = new HashTableImpl<>(nodo, 100);
+        for (int i = 0; i < cancionesFecha.size(); i++) {
             Cancion tempCancion = cancionesFecha.get(i);
-            if (!cantidadRepetidos.contains(tempCancion.getId())){
-                cantidadRepetidos.put(tempCancion.getId(),1);
-            }else{
-                Integer prueba = cantidadRepetidos.get(tempCancion.getId());
-                prueba++;
-
+            String idTemp = tempCancion.getId();
+            //si la cancion no se encontro hasta ahora, la agrega al hash y cuenta como 1 aparicion
+            if (!cantidadRepetidos.contains(idTemp)) {
+                cantidadRepetidos.put(idTemp, 1);
+            } else {
+                //si la cancion ya se habia encontrado, aumenta en 1 la cantidad de apariciones
+                Integer cantidad = cantidadRepetidos.get(idTemp);
+                cantidadRepetidos.changeValue(idTemp, cantidad + 1);
             }
         }
-        Node<String,Integer>[] listaHash =cantidadRepetidos.getArrayHash();
-        MyLinkedListImpl<Node<String,Integer>> listaTop5 = new MyLinkedListImpl<>();
-        for (int i = 0; i<5; i++) {
-            if (listaHash[i] != null){
-            listaTop5.add(listaHash[i]);
-        }}
+        //buscamos las 5 que mas veces aparecen
+        //creamos una lista y agregamos las primeras 5 canciones que aparecen en el hash
+        Node<String, Integer>[] listaHash = cantidadRepetidos.getArrayHash();
+        MyLinkedListImpl<Node<String, Integer>> listaTop5 = new MyLinkedListImpl<>();
+        int posInicial=0;
+        for (int i = 0; listaTop5.size()<5; i++) {
+            if (listaHash[i] != null) {
+                listaTop5.add(listaHash[i]);
+            }
+            posInicial=i;
+        }
+        //recorremos las canciones
+        for (int i = posInicial; i < listaHash.length; i++) {
+            if (listaHash[i] != null) {
+                Node<String, Integer> cancionActual = listaHash[i];
+                Node<String, Integer> cancionMenor = listaTop5.get(0);
+                for (int j = 1; j < 5; j++) {
+                    //buscamos la cancion que aparece menos veces, de entre las 5 que mas aparecen
+                    if (cancionMenor.getValue() > listaTop5.get(j).getValue()) {
+                        cancionMenor = listaTop5.get(j);
+                    }
+                }
+                //si la cancion actual aparece mas veces que la que menos aparece de las guardadas anteriormente,
+                //eliminamos la anterior y agregamos la nueva
+                if (cancionActual.getValue() > cancionMenor.getValue()) {
+                    listaTop5.remove(cancionMenor);
+                    listaTop5.add(cancionActual);
+                }
+            }
+        }
+        //cargamos el top 5 a un array para despues hacer bubblesort
+        Node<String,Integer>[] arrayTop5 = new Node[5];
+        for (int i=0;i<5;i++){
+            arrayTop5[i] = listaTop5.get(i);
+        }
 
+        //pruebo Bubblesort
+        for (int i=1;i<arrayTop5.length-1;i++){
+            for (int j=0;j< arrayTop5.length-i;j++){
+                if (arrayTop5[j].getValue() < arrayTop5[j+1].getValue()){
+                    Node<String, Integer> aux = arrayTop5[j];
+                    arrayTop5[j]=arrayTop5[j+1];
+                    arrayTop5[j+1] = aux;
+                }
+            }
+        }
 
+        MyLinkedListImpl<Cancion> nuevaListaTop5 = new MyLinkedListImpl<>();
+        for (int i = 0; i < cancionesFecha.size() && nuevaListaTop5.size() < 5; i++) {
+            //hacer algo para que busque por el id asi conseguimos los datos como nombre artistas etc
+            String id = cancionesFecha.get(i).getId();
+            if (id.equals(listaTop5.get(0).getKey()) || id.equals(listaTop5.get(1).getKey()) || id.equals(listaTop5.get(2).getKey()) ||
+                    id.equals(listaTop5.get(3).getKey()) || id.equals(listaTop5.get(4).getKey())) {
+                nuevaListaTop5.add(cancionesFecha.get(i));
+            }
+        }
 
+        for (int i=0;i<5;i++) {
+            Cancion tempCancion =null;
+            for (int j=0;j<5 && tempCancion==null;j++){
+                if (arrayTop5[i].getKey().equals(nuevaListaTop5.get(j).getId())){
+                    tempCancion=nuevaListaTop5.get(j);
+                }
+            }
+            System.out.println("\nNombre de la cancion: " + tempCancion.getNombre());
+            System.out.println("Aparece "+ arrayTop5[i].getValue() + " veces en el top 50");
+
+        }
     }
-
 
 
 
@@ -100,6 +163,10 @@ public class Spotify {
                 String fecha = scanner.nextLine();
                 spotify.consultaTop10PaisFecha(pais,fecha);
             case "2":
+                scanner.reset();
+                System.out.println("Ingrese la fecha (YYYY-MM-DD)");
+                String fechaConsulta = scanner.nextLine();
+                spotify.consultaMasTop50(fechaConsulta);
             case "3":
             case "4":
             case "5":
