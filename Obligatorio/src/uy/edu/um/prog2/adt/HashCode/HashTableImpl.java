@@ -2,6 +2,8 @@ package uy.edu.um.prog2.adt.HashCode;
 
 import javax.print.attribute.standard.NumberOfDocuments;
 import java.lang.reflect.Array;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
@@ -85,7 +87,6 @@ public class HashTableImpl<K,V> implements HashTable<K,V>{
         //actualizamos la cantidad de agregados y el factor
         this.setCantidadAgregados(this.getCantidadAgregados()+1);
         this.setFactor( ( (float) this.getCantidadAgregados() )/this.getArrayHash().length);
-        System.out.println("agregado" + key.toString());
     }
 
 
@@ -93,7 +94,8 @@ public class HashTableImpl<K,V> implements HashTable<K,V>{
     @Override
     public boolean contains(K key) {
         //llamamos a la funcion searchPosicion, si no lo encuentra devuelve false
-        //en el caso contrario devuelve true
+        //en el caso contrario devuelve tru
+
         if (this.searchPosicion(key)==-1){
             return false;
         }

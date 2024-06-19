@@ -5,11 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LeerCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeerCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LeerCSV.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OrdenarCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrdenarCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spotify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spotify.java" afterDir="false" />
+    </list>
+    <list id="a5afd2a0-edf5-45b5-a372-723100f39d5c" name="Changes by Barbaspin" comment="">
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/OrdenarCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/OrdenarCSV.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spotify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spotify.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTableImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/uy/edu/um/prog2/adt/HashCode/HashTableImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +30,37 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/OrdenarCSV.java">
+      <ranges>
+        <range start1="5" end1="5" start2="5" end2="11" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="10" end1="29" start2="16" end2="17" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="32" end1="48" start2="20" end2="23" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="49" end1="66" start2="24" end2="39" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="67" end1="86" start2="40" end2="66" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="87" end1="88" start2="67" end2="67" changelist="a5afd2a0-edf5-45b5-a372-723100f39d5c" />
+        <range start1="90" end1="91" start2="69" end2="69" changelist="a5afd2a0-edf5-45b5-a372-723100f39d5c" />
+        <range start1="92" end1="94" start2="70" end2="72" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="96" end1="98" start2="74" end2="76" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="99" end1="107" start2="77" end2="77" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/Spotify.java">
+      <ranges>
+        <range start1="12" end1="12" start2="12" end2="14" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="13" end1="15" start2="15" end2="15" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="16" end1="18" start2="16" end2="18" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="19" end1="27" start2="19" end2="30" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="31" end1="33" start2="34" end2="35" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="34" end1="38" start2="36" end2="40" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="41" end1="42" start2="43" end2="66" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="46" end1="46" start2="70" end2="74" changelist="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" />
+        <range start1="61" end1="62" start2="89" end2="90" changelist="a5afd2a0-edf5-45b5-a372-723100f39d5c" />
+        <range start1="64" end1="72" start2="92" end2="105" changelist="a5afd2a0-edf5-45b5-a372-723100f39d5c" />
+        <range start1="73" end1="76" start2="106" end2="106" changelist="a5afd2a0-edf5-45b5-a372-723100f39d5c" />
+      </ranges>
+    </file>
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -97,6 +132,7 @@
       <workItem from="1718464101597" duration="11891000" />
       <workItem from="1718625209223" duration="22000" />
       <workItem from="1718629460479" duration="4983000" />
+      <workItem from="1718718603736" duration="8216000" />
     </task>
     <servers />
   </component>
