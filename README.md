@@ -7,6 +7,14 @@ PROCESOS DE CARGA
   Esta manera de ordenarla nos brinda una facil obtencion de las canciones y tambien es util para facilitar la realizacion de las consultas.
   Para cargar los datos del csv, creamos instancias de Cancion, estas las creamos usando las filas del csv guardadas como un arrays ,separando cada value 
   utilizando split("\",\""), el constructor se encarga de leer el array y crear la instancia.
-  A la hora de guardarla se verifica la existencia de una lista con la clave fecha en el hash, si esta no existe se crea, y se le agrega la instancia de Cancion a la lista.
+  A la hora de guardarla se verifica la existencia de una lista con la clave fecha en el hash, si esta no existe se crea, y se le agrega la instancia de Cancion a la      lista.
+
+
+REALIZACION DE LOS REPORTES
+
+  REPORTE TOP 10 PAIS FECHA
+
+  Este reporte busca que la fecha indicada este en el hash y obtiene la lista,tambien creamos un hash donde guardaremos las 10 canciones y la clave sera la posicion, a esta lista la iteramos
+  
   
       
