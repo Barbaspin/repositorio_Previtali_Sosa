@@ -44,9 +44,9 @@ public class Spotify {
         for (int i = 1; i < 11; i++) {
 //            System.out.println("Top" + i + ": " + hashTop.get(i2).getNombre());
             String i2 = Integer.toString(i);
-            System.out.println("\nNombre de la cancion: "+ hashTop.get(i2).getNombre());
-            System.out.println("Nombre del/los artista/s: " + hashTop.get(i2).getArtistas());
-            System.out.println("Posicion del top: " + i);
+            System.out.println("\n top " + i + "- ");
+            System.out.println("\tNombre de la cancion: "+ hashTop.get(i2).getNombre());
+            System.out.println("\tNombre del/los artista/s: " + hashTop.get(i2).getArtistas());
         }
 
     }
@@ -102,7 +102,7 @@ public class Spotify {
         }
         //cargamos el top 5 a un array para despues hacer bubblesort
         Node<String,Integer>[] arrayTop5 = new Node[5];
-        for (int i=0;i<5;i++){
+        for (int i=0;i<listaTop5.size();i++){
             arrayTop5[i] = listaTop5.get(i);
         }
 
@@ -125,7 +125,6 @@ public class Spotify {
                 nuevaListaTop5.add(cancionesFecha.get(i));
             }
         }
-
         for (int i=0;i<5;i++) {
             Cancion tempCancion =null;
             for (int j=0;j<5 && tempCancion==null;j++){
@@ -133,13 +132,9 @@ public class Spotify {
                     tempCancion=nuevaListaTop5.get(j);
                 }
             }
-            System.out.println("\n"+tempCancion.getNombre() + "aparece "+ arrayTop5[i].getValue() + " veces en el top 50");
+            System.out.println(i+1 + "- "+tempCancion.getNombre() + " aparece "+ arrayTop5[i].getValue() + " veces en el top 50");
         }
     }
-
-
-
-
 
     public void consultaMasArtistasTop50(String fechaInicio,String fechaFin){
         LocalDate fechaInicioDate = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -263,11 +258,54 @@ public class Spotify {
         System.out.println(artista + " aparece " + cantidadAparecido + " veces");
     }
 
+    public void cantidadTempo(String tempo1, String tempo2, String fecha1, String fecha2) {
+        int contadorTempo=0;
+        //guardamos los tempos como Integers
+        Float tempo1Float = Float.parseFloat(tempo1);
+        Float tempo2Float = Float.parseFloat(tempo2);
+        //guardamos las fechas como fechas
+        LocalDate fechaInicioDate = LocalDate.parse(fecha1, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate fechaFinDate = LocalDate.parse(fecha2, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        if (fechaInicioDate.isAfter(fechaFinDate) || tempo1Float > tempo2Float) {
+            System.out.println("error al darme los datos");
+        }
 
+        //creamos un hash con las canciones que revisamos, el Value del nodo no se va a modificar
+        Node<String, Integer> nodo = new Node<>(null, null);
+        HashTableImpl<String, Integer> cancionesRepetidas = new HashTableImpl<>(nodo, 100);
 
-    public void cantidadTempo(String tempo1, String tempo2, String fecha1, String fecha2){
+        //buscaremos en todos los dias entre las dos fechas
+        int difDias = 0;
+        while (fechaInicioDate.plusDays(difDias).isBefore(fechaFinDate)) {
+            difDias++;
+        }
+        for (int i = 0; i < difDias + 1; i++) {
+            LocalDate tempFecha = fechaInicioDate.plusDays(i);
+            //para usar esta fecha en el hash, la pasamos a String
+            String tempFechaString = tempFecha.toString();
+            //conseguimos la lista de canciones en esa fecha
+            MyLinkedListImpl<Cancion> cancionesFecha = ord.getHashFechas().get(tempFechaString);
 
+            //por cada cancion de esta fecha
+            for (int j = 0; j < cancionesFecha.size(); j++) {
+                Cancion tempCancion = cancionesFecha.get(j);
+                //si aun no revisamos esta cancion, la revisa
+                if (!cancionesRepetidas.contains(tempCancion.getId())){
+                    //la agregamos al hash de canciones revisadas
+                    cancionesRepetidas.put(tempCancion.getId(),null);
+                    Float tempoCancion = Float.parseFloat(tempCancion.getTempo());
+                    //vemos si el tempo de la cancion esta entre los buscados
+                    if (tempo1Float < tempoCancion && tempoCancion < tempo2Float){
+                        //si cumple con esto, aumentamos en 1 la cantidad de canciones que cumplen lo requerido
+                        contadorTempo++;
+                    }
+                }
+            }
+        }
+        System.out.println("La cantidad de canciones que tienen un tempo entre " +
+                tempo1 + " y " + tempo2 + " entre " + fecha1 + " y " + fecha2 + " es " + contadorTempo);
     }
+
 
     //constructor
     public Spotify() {
@@ -280,7 +318,7 @@ public class Spotify {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nElija su opcion");
         System.out.println(" 1: Top 10 canciones en un pais en dia dado");
-        System.out.println(" 2: Top 5 canciones en más top 50");
+        System.out.println(" 2: Top 5 canciones en más top 50 en un dia dado");
         System.out.println(" 3: Top 7 artistas en un rango de fechas");
         System.out.println(" 4: Cantidad de veces que aparece un artista en una fecha");
         System.out.println(" 5: Cantidad de canciones con tempo especifico en un rango de fechas");
@@ -290,12 +328,16 @@ public class Spotify {
         switch (opcion) {
             case "1":
                 scanner.reset();
-                System.out.println("Ingrese el pais");
+                System.out.println("Ingrese el pais (para ver el top mundial ingresar \"mundial\")");
                 String pais = scanner.nextLine();
                 scanner.reset();
                 System.out.println("Ingrese la fecha (YYYY-MM-DD)");
                 String fecha = scanner.nextLine();
-                this.consultaTop10PaisFecha(pais,fecha);
+                if (pais.toLowerCase().equals("mundial")){
+                    this.consultaTop10PaisFecha("",fecha);
+                }else{
+                    this.consultaTop10PaisFecha(pais,fecha);
+                }
                 this.menu();
                 break;
             case "2":
@@ -326,6 +368,20 @@ public class Spotify {
                 this.menu();
                 break;
             case "5":
+                scanner.reset();
+                System.out.println("¿Entre cuáles dos tempos?, ingrese el primero");
+                String tempo1 = scanner.nextLine();
+                scanner.reset();
+                System.out.println("Ingrese el segundo");
+                String tempo2 = scanner.nextLine();
+                System.out.println("¿Entre cuáles dos fechas?, ingrese la primera (YYYY-MM-DD)");
+                String fecha1 = scanner.nextLine();
+                scanner.reset();
+                System.out.println("Ingrese la segunda fecha (YYYY-MM-DD)");
+                String fecha2 = scanner.nextLine();
+                this.cantidadTempo(tempo1,tempo2,fecha1,fecha2);
+                this.menu();
+                break;
             case "6":
                 System.out.println("Saliendo...");
                 break;
