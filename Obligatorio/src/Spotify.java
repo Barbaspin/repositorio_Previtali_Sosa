@@ -4,7 +4,14 @@ import uy.edu.um.prog2.adt.HashCode.Node;
 import uy.edu.um.prog2.adt.linkedlist.MyLinkedListImpl;
 
 import java.awt.*;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.Period;
+import java.time.chrono.ChronoLocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Scanner;
 
 public class Spotify {
@@ -112,7 +119,6 @@ public class Spotify {
 
         MyLinkedListImpl<Cancion> nuevaListaTop5 = new MyLinkedListImpl<>();
         for (int i = 0; i < cancionesFecha.size() && nuevaListaTop5.size() < 5; i++) {
-            //hacer algo para que busque por el id asi conseguimos los datos como nombre artistas etc
             String id = cancionesFecha.get(i).getId();
             if (id.equals(listaTop5.get(0).getKey()) || id.equals(listaTop5.get(1).getKey()) || id.equals(listaTop5.get(2).getKey()) ||
                     id.equals(listaTop5.get(3).getKey()) || id.equals(listaTop5.get(4).getKey())) {
@@ -127,9 +133,7 @@ public class Spotify {
                     tempCancion=nuevaListaTop5.get(j);
                 }
             }
-            System.out.println("\nNombre de la cancion: " + tempCancion.getNombre());
-            System.out.println("Aparece "+ arrayTop5[i].getValue() + " veces en el top 50");
-
+            System.out.println("\n"+tempCancion.getNombre() + "aparece "+ arrayTop5[i].getValue() + " veces en el top 50");
         }
     }
 
@@ -137,6 +141,133 @@ public class Spotify {
 
 
 
+    public void consultaMasArtistasTop50(String fechaInicio,String fechaFin){
+        LocalDate fechaInicioDate = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate fechaFinDate = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        // Para aumentar la cantidad de dias se hace asi
+        // LocalDate fechaFinal= fechaInicial.plusDays(CantDias);
+        if (fechaInicioDate.isAfter(fechaFinDate)){
+            System.out.println("error al darme las fechas");
+        }
+        //creamos un hash con la cantidad de veces que se repite el artista en el top 50
+        Node<String, Integer> nodo = new Node<>(null, null);
+        HashTableImpl<String, Integer> cantidadRepetidos = new HashTableImpl<>(nodo, 100);
+
+        //buscaremos en todos los dias entre las dos fechas
+//        no funciono
+//        int difDias = (int) Duration.between(fechaInicioDate,fechaFinDate).toDays();
+
+        int difDias = 0;
+        while (fechaInicioDate.plusDays(difDias).isBefore(fechaFinDate)){
+            difDias++;
+        }
+        for (int i = 0; i<difDias+1 ;i++) {
+            LocalDate tempFecha = fechaInicioDate.plusDays(i);
+            //para usar esta fecha en el hash, la pasamos a String
+            String tempFechaString = tempFecha.toString();
+            //conseguimos la lista de canciones en esa fecha
+            MyLinkedListImpl<Cancion> cancionesFecha = ord.getHashFechas().get(tempFechaString);
+
+            //por cada cancion de esta fecha, buscamos cuantas veces se repite cada artista
+            for (int j = 0; j < cancionesFecha.size(); j++) {
+                Cancion tempCancion = cancionesFecha.get(j);
+                // separamos los artistas, donde cada uno esta en una posicion distinta del array
+                String[] artistasArray = tempCancion.getArtistas().split(", ");
+
+                //por cada artista del array
+                for (String tempArtista : artistasArray) {
+                    //si el artista no se encontro hasta ahora, lo agrega al hash y cuenta como 1 aparicion
+                    if (!cantidadRepetidos.contains(tempArtista)) {
+                        cantidadRepetidos.put(tempArtista, 1);
+                    } else {
+                        //si el artista ya se habia encontrado, aumenta en 1 la cantidad de apariciones
+                        Integer cantidad = cantidadRepetidos.get(tempArtista);
+                        cantidadRepetidos.changeValue(tempArtista, cantidad + 1);
+                    }
+                }
+            }
+        }
+
+        //buscamos los 7 que mas veces aparecen
+        //creamos una lista y agregamos los primeras 7 artistas que aparecen en el hash
+        Node<String, Integer>[] listaHash = cantidadRepetidos.getArrayHash();
+        MyLinkedListImpl<Node<String, Integer>> listaTop7 = new MyLinkedListImpl<>();
+        int posInicial=0;
+        for (int i = 0; listaTop7.size()<7; i++) {
+            if (listaHash[i] != null) {
+                listaTop7.add(listaHash[i]);
+            }
+            posInicial=i;
+        }
+        //recorremos los artistas
+        for (int i = posInicial; i < listaHash.length; i++) {
+            if (listaHash[i] != null) {
+                Node<String, Integer> artistaActual = listaHash[i];
+                Node<String, Integer> artistaMenor = listaTop7.get(0);
+                for (int j = 1; j < 7; j++) {
+                    //buscamos el artista que aparece menos veces, de entre los 7 que mas aparecen
+                    if (artistaMenor.getValue() > listaTop7.get(j).getValue()) {
+                        artistaMenor = listaTop7.get(j);
+                    }
+                }
+                //si el artista actual aparece menos veces que el que menos aparece de los guardadas anteriormente,
+                //eliminamos al anterior y agregamos al nuevo
+                if (artistaActual.getValue() > artistaMenor.getValue()) {
+                    listaTop7.remove(artistaMenor);
+                    listaTop7.add(artistaActual);
+                }
+            }
+        }
+        //cargamos el top 7 a un array para despues hacer bubblesort
+        Node<String,Integer>[] arrayTop7 = new Node[7];
+        for (int i=0;i<7;i++){
+            arrayTop7[i] = listaTop7.get(i);
+        }
+
+        //pruebo Bubblesort
+        for (int i=1;i<arrayTop7.length-1;i++){
+            for (int j=0;j< arrayTop7.length-i;j++){
+                if (arrayTop7[j].getValue() < arrayTop7[j+1].getValue()){
+                    Node<String, Integer> aux = arrayTop7[j];
+                    arrayTop7[j]=arrayTop7[j+1];
+                    arrayTop7[j+1] = aux;
+                }
+            }
+        }
+
+        for (int i=0;i<7;i++) {
+            Node<String,Integer> artista = arrayTop7[i];
+            System.out.println(i+1 +"- "+ artista.getKey()+ " aparece "+ artista.getValue() + " veces en el top 50");
+        }
+
+    }
+
+    public void cantidadArtistaEnFecha(String artista,String fechaPedida){
+        int cantidadAparecido=0;
+            //conseguimos la lista de canciones en esa fecha
+            MyLinkedListImpl<Cancion> cancionesFecha = ord.getHashFechas().get(fechaPedida);
+            //por cada cancion de esta fecha, buscamos cuantas veces se repite cada artista
+            for (int j = 0; j < cancionesFecha.size(); j++) {
+                Cancion tempCancion = cancionesFecha.get(j);
+                // separamos los artistas, donde cada uno esta en una posicion distinta del array
+                String[] artistasArray = tempCancion.getArtistas().split(", ");
+
+                //por cada artista del array
+                for (String tempArtista : artistasArray) {
+                    //si el artista no se encontro hasta ahora, lo agrega al hash y cuenta como 1 aparicion
+                    if (tempArtista.equals(artista)) {
+                        cantidadAparecido++;
+                    }
+                }
+            }
+        System.out.println(artista + " aparece " + cantidadAparecido + " veces");
+    }
+
+
+
+    public void cantidadTempo(String tempo1, String tempo2, String fecha1, String fecha2){
+
+    }
 
     //constructor
     public Spotify() {
@@ -145,12 +276,15 @@ public class Spotify {
     }
 
 
-    public static void main(String[] args) {
-        Spotify spotify = new Spotify();
+    public void menu(){
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Eliga su opcion");
+        System.out.println("\nElija su opcion");
         System.out.println(" 1: Top 10 canciones en un pais en dia dado");
         System.out.println(" 2: Top 5 canciones en más top 50");
+        System.out.println(" 3: Top 7 artistas en un rango de fechas");
+        System.out.println(" 4: Cantidad de veces que aparece un artista en una fecha");
+        System.out.println(" 5: Cantidad de canciones con tempo especifico en un rango de fechas");
+        System.out.println(" 6: Salir del programa");
         String opcion = scanner.nextLine();
 
         switch (opcion) {
@@ -161,16 +295,51 @@ public class Spotify {
                 scanner.reset();
                 System.out.println("Ingrese la fecha (YYYY-MM-DD)");
                 String fecha = scanner.nextLine();
-                spotify.consultaTop10PaisFecha(pais,fecha);
+                this.consultaTop10PaisFecha(pais,fecha);
+                this.menu();
+                break;
             case "2":
                 scanner.reset();
                 System.out.println("Ingrese la fecha (YYYY-MM-DD)");
                 String fechaConsulta = scanner.nextLine();
-                spotify.consultaMasTop50(fechaConsulta);
+                this.consultaMasTop50(fechaConsulta);
+                this.menu();
+                break;
             case "3":
+                scanner.reset();
+                System.out.println("¿Entre cuáles dos fechas?, ingrese la primera (YYYY-MM-DD)");
+                String fechaInicio = scanner.nextLine();
+                scanner.reset();
+                System.out.println("Ingrese la segunda fecha (YYYY-MM-DD)");
+                String fechaFin = scanner.nextLine();
+                this.consultaMasArtistasTop50(fechaInicio,fechaFin);
+                this.menu();
+                break;
             case "4":
+                scanner.reset();
+                System.out.println("Ingrese el artista");
+                String artista = scanner.nextLine();
+                scanner.reset();
+                System.out.println("Ingrese la fecha (YYYY-MM-DD)");
+                String fechaPedida = scanner.nextLine();
+                this.cantidadArtistaEnFecha(artista,fechaPedida);
+                this.menu();
+                break;
             case "5":
+            case "6":
+                System.out.println("Saliendo...");
+                break;
+            default:
+                System.out.println("Opcion inválida. Intente nuevamente");
+                menu();
+                break;
         }
+    }
+
+
+    public static void main(String[] args) {
+        Spotify spotify = new Spotify();
+        spotify.menu();
     }
 
 
