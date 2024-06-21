@@ -1,5 +1,7 @@
 import Exceptions.DateOutOFBounds;
 import Exceptions.DatosDesordenados;
+import Exceptions.MalFormatoFecha;
+import Exceptions.MalFormatoFloat;
 import uy.edu.um.prog2.adt.HashCode.HashTable;
 import uy.edu.um.prog2.adt.HashCode.HashTableImpl;
 import uy.edu.um.prog2.adt.HashCode.Node;
@@ -18,15 +20,22 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Spotify {
-    private OrdenarCSV ord;
-    private LocalDate primerFecha;
-    private LocalDate ultimaFecha;
+    private final OrdenarCSV ord;
+    private final LocalDate primerFecha;
+    private final LocalDate ultimaFecha;
 
 
 
     //consultas
-    public void consultaTop10PaisFecha(String pais,String fecha) throws DateOutOFBounds{
-        LocalDate testFecha = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public void consultaTop10PaisFecha(String pais,String fecha)
+            throws DateOutOFBounds, MalFormatoFecha {
+        LocalDate testFecha = null;
+        try {
+             testFecha = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            throw new MalFormatoFecha();
+        }
+
         if (testFecha.isBefore(primerFecha) || testFecha.isAfter(ultimaFecha) || !this.ord.getHashFechas().contains(fecha)) {
                 throw new DateOutOFBounds();
         } else {
@@ -65,8 +74,15 @@ public class Spotify {
     }
 
 
-    public void consultaMasTop50(String fecha) throws DateOutOFBounds {
-        LocalDate testFecha = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public void consultaMasTop50(String fecha)
+            throws DateOutOFBounds,MalFormatoFecha{
+        LocalDate testFecha=null;
+        try {
+            testFecha=LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            throw new MalFormatoFecha();
+        }
+
         if (testFecha.isBefore(primerFecha) || testFecha.isAfter(ultimaFecha)|| !this.ord.getHashFechas().contains(fecha)) {
                 throw new DateOutOFBounds();
         } else {
@@ -154,9 +170,16 @@ public class Spotify {
         }
     }
 
-    public void consultaMasArtistasTop50(String fechaInicio,String fechaFin) throws DatosDesordenados,DateOutOFBounds{
-        LocalDate fechaInicioDate = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate fechaFinDate = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public void consultaMasArtistasTop50(String fechaInicio,String fechaFin)
+            throws DatosDesordenados,DateOutOFBounds,MalFormatoFecha{
+        LocalDate fechaInicioDate=null;
+        LocalDate fechaFinDate=null;
+        try {
+            fechaInicioDate = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            fechaFinDate = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            throw new MalFormatoFecha();
+        }
 
         // Para aumentar la cantidad de dias se hace asi
         // LocalDate fechaFinal= fechaInicial.plusDays(CantDias);
@@ -260,8 +283,15 @@ public class Spotify {
         }
     }
 
-    public void cantidadArtistaEnFecha(String artista,String fechaPedida) throws DateOutOFBounds{
-        LocalDate testFecha = LocalDate.parse(fechaPedida, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    public void cantidadArtistaEnFecha(String artista,String fechaPedida)
+            throws DateOutOFBounds,MalFormatoFecha{
+        LocalDate testFecha =null;
+        try{
+            testFecha = LocalDate.parse(fechaPedida, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch(Exception e){
+            throw new MalFormatoFecha();
+        }
+
         if (testFecha.isBefore(primerFecha) || testFecha.isAfter(ultimaFecha)|| !this.ord.getHashFechas().contains(fechaPedida)) {
             throw new DateOutOFBounds();
         } else {
@@ -286,14 +316,30 @@ public class Spotify {
         }
     }
 
-    public void cantidadTempo(String tempo1, String tempo2, String fecha1, String fecha2) throws DateOutOFBounds,DatosDesordenados {
+    public void cantidadTempo(String tempo1, String tempo2, String fecha1, String fecha2)
+            throws DateOutOFBounds,DatosDesordenados,MalFormatoFecha, MalFormatoFloat {
         int contadorTempo = 0;
         //guardamos los tempos como Integers
-        float tempo1Float = Float.parseFloat(tempo1);
-        float tempo2Float = Float.parseFloat(tempo2);
+
+        float tempo1Float = 0;
+        float tempo2Float = 0;
+
+        try {
+             tempo1Float = Float.parseFloat(tempo1);
+             tempo2Float = Float.parseFloat(tempo2);
+        }catch (Exception e){
+            throw new MalFormatoFloat();
+        }
+
         //guardamos las fechas como fechas
-        LocalDate fechaInicioDate = LocalDate.parse(fecha1, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        LocalDate fechaFinDate = LocalDate.parse(fecha2, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate fechaInicioDate = null;
+        LocalDate fechaFinDate =null;
+        try{
+             fechaInicioDate= LocalDate.parse(fecha1, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+             fechaFinDate = LocalDate.parse(fecha2, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        }catch (Exception e){
+            throw new MalFormatoFecha();
+        }
 
         if (fechaInicioDate.isBefore(primerFecha) || fechaFinDate.isAfter(ultimaFecha)) {
                 throw new DateOutOFBounds();
@@ -375,12 +421,16 @@ public class Spotify {
                         this.consultaTop10PaisFecha("",fecha);
                     } catch (DateOutOFBounds e) {
                         System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                    } catch (MalFormatoFecha e) {
+                        System.out.println("Por favor ingresar la fecha con el formato correcto");
                     }
                 }else{
                     try {
                         this.consultaTop10PaisFecha(pais,fecha);
                     } catch (DateOutOFBounds e) {
                         System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                    } catch (MalFormatoFecha e) {
+                        System.out.println("Por favor ingresar la fecha con el formato indicado");
                     }
                 }
                 this.menu();
@@ -393,6 +443,8 @@ public class Spotify {
                     this.consultaMasTop50(fechaConsulta);
                 } catch (DateOutOFBounds e) {
                     System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                } catch (MalFormatoFecha e) {
+                    System.out.println("Por favor ingresar la fecha con el formato indicado");
                 }
                 this.menu();
                 break;
@@ -409,6 +461,8 @@ public class Spotify {
                     System.out.println("La primer fecha es mayor que la segunda, intente nuevamente");
                 } catch (DateOutOFBounds e) {
                     System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                } catch (MalFormatoFecha e) {
+                    System.out.println("Por favor ingresar la fecha con el formato indicado");
                 }
                 this.menu();
                 break;
@@ -423,6 +477,8 @@ public class Spotify {
                     this.cantidadArtistaEnFecha(artista,fechaPedida);
                 } catch (DateOutOFBounds e) {
                     System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                } catch (MalFormatoFecha e) {
+                    System.out.println("Por favor ingresar la fecha con el formato indicado");
                 }
                 this.menu();
                 break;
@@ -443,7 +499,12 @@ public class Spotify {
                 } catch (DateOutOFBounds e) {
                     System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
                 } catch (DatosDesordenados e) {
-                    System.out.println("El primer dato es mayor que el segundo, intente nuevamente");                }
+                    System.out.println("El primer dato es mayor que el segundo, intente nuevamente");
+                } catch (MalFormatoFecha e) {
+                    System.out.println("Por favor ingresar la fecha con el formato indicado");
+                } catch (MalFormatoFloat e) {
+                    System.out.println("Por favor ingresar el tempo como un número");
+                }
                 this.menu();
                 break;
             case "6":
