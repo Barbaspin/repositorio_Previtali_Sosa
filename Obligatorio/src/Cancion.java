@@ -8,27 +8,27 @@ public class Cancion {
     private String nombre;
     private String artistas;
     private String rank;
-    private String movimientoDiario;
-    private String movimientoSemanal;
+    private String daily_movement;
+    private String weekly_movement;
     private String pais;
     private String fecha;
-    private String popularidad;
-    private String esExplicito;
-    private String duracionMs;
-    private String album;
-    private String fechaAlbum;
-    private String bailabilidad;
-    private String energia;
-    private String llave;
-    private String ruidosidad;
-    private String modo;
-    private String hablacion;
-    private String acustica;
-    private String instrumental;
-    private String viveza;
+    private String popularity;
+    private String is_explicit;
+    private String duration_ms;
+    private String album_name;
+    private String album_release_date;
+    private String danceability;
+    private String energy;
+    private String key;
+    private String loudness;
+    private String mode;
+    private String speechiness;
+    private String acousticness;
+    private String instrumentalness;
+    private String liveness;
     private String valence;
     private String tempo;
-    private String time_sig;
+    private String time_signature;
 
 
     public Cancion(MyLinkedListImpl<String> lista) {
@@ -36,27 +36,27 @@ public class Cancion {
         this.nombre =lista.get(1);
         this.artistas = lista.get(2);
         this.rank = lista.get(3);
-        this.movimientoDiario = lista.get(4);
-        this.movimientoSemanal = lista.get(5);
+        this.daily_movement = lista.get(4);
+        this.weekly_movement = lista.get(5);
         this.pais = lista.get(6);
         this.fecha = lista.get(7);
-        this.popularidad = lista.get(8);
-        this.esExplicito = lista.get(9);
-        this.duracionMs = lista.get(10);
-        this.album = lista.get(11);
-        this.fechaAlbum = lista.get(12);
-        this.bailabilidad = lista.get(13);
-        this.energia = lista.get(14);
-        this.llave = lista.get(15);
-        this.ruidosidad = lista.get(16);
-        this.modo = lista.get(17);
-        this.hablacion = lista.get(18);
-        this.acustica = lista.get(19);
-        this.instrumental = lista.get(20);
-        this.viveza = lista.get(21);
+        this.popularity = lista.get(8);
+        this.is_explicit = lista.get(9);
+        this.duration_ms = lista.get(10);
+        this.album_name = lista.get(11);
+        this.album_release_date = lista.get(12);
+        this.danceability = lista.get(13);
+        this.energy = lista.get(14);
+        this.key = lista.get(15);
+        this.loudness = lista.get(16);
+        this.mode = lista.get(17);
+        this.speechiness = lista.get(18);
+        this.acousticness = lista.get(19);
+        this.instrumentalness = lista.get(20);
+        this.liveness = lista.get(21);
         this.valence = lista.get(22);
         this.tempo = lista.get(23);
-        this.time_sig = lista.get(24);
+        this.time_signature = lista.get(24);
 
     }
 
@@ -92,20 +92,20 @@ public class Cancion {
         this.rank = rank;
     }
 
-    public String getMovimientoDiario() {
-        return movimientoDiario;
+    public String getDaily_movement() {
+        return daily_movement;
     }
 
-    public void setMovimientoDiario(String movimientoDiario) {
-        this.movimientoDiario = movimientoDiario;
+    public void setDaily_movement(String daily_movement) {
+        this.daily_movement = daily_movement;
     }
 
-    public String getMovimientoSemanal() {
-        return movimientoSemanal;
+    public String getWeekly_movement() {
+        return weekly_movement;
     }
 
-    public void setMovimientoSemanal(String movimientoSemanal) {
-        this.movimientoSemanal = movimientoSemanal;
+    public void setWeekly_movement(String weekly_movement) {
+        this.weekly_movement = weekly_movement;
     }
 
     public String getPais() {
@@ -124,116 +124,116 @@ public class Cancion {
         this.fecha = fecha;
     }
 
-    public String getPopularidad() {
-        return popularidad;
+    public String getPopularity() {
+        return popularity;
     }
 
-    public void setPopularidad(String popularidad) {
-        this.popularidad = popularidad;
+    public void setPopularity(String popularity) {
+        this.popularity = popularity;
     }
 
-    public String getEsExplicito() {
-        return esExplicito;
+    public String getIs_explicit() {
+        return is_explicit;
     }
 
-    public void setEsExplicito(String esExplicito) {
-        this.esExplicito = esExplicito;
+    public void setIs_explicit(String is_explicit) {
+        this.is_explicit = is_explicit;
     }
 
-    public String getDuracionMs() {
-        return duracionMs;
+    public String getDuration_ms() {
+        return duration_ms;
     }
 
-    public void setDuracionMs(String duracionMs) {
-        this.duracionMs = duracionMs;
+    public void setDuration_ms(String duration_ms) {
+        this.duration_ms = duration_ms;
     }
 
-    public String getAlbum() {
-        return album;
+    public String getAlbum_name() {
+        return album_name;
     }
 
-    public void setAlbum(String album) {
-        this.album = album;
+    public void setAlbum_name(String album_name) {
+        this.album_name = album_name;
     }
 
-    public String getFechaAlbum() {
-        return fechaAlbum;
+    public String getAlbum_release_date() {
+        return album_release_date;
     }
 
-    public void setFechaAlbum(String fechaAlbum) {
-        this.fechaAlbum = fechaAlbum;
+    public void setAlbum_release_date(String album_release_date) {
+        this.album_release_date = album_release_date;
     }
 
-    public String getBailabilidad() {
-        return bailabilidad;
+    public String getDanceability() {
+        return danceability;
     }
 
-    public void setBailabilidad(String bailabilidad) {
-        this.bailabilidad = bailabilidad;
+    public void setDanceability(String danceability) {
+        this.danceability = danceability;
     }
 
-    public String getEnergia() {
-        return energia;
+    public String getEnergy() {
+        return energy;
     }
 
-    public void setEnergia(String energia) {
-        this.energia = energia;
+    public void setEnergy(String energy) {
+        this.energy = energy;
     }
 
-    public String getLlave() {
-        return llave;
+    public String getKey() {
+        return key;
     }
 
-    public void setLlave(String llave) {
-        this.llave = llave;
+    public void setKey(String key) {
+        this.key = key;
     }
 
-    public String getRuidosidad() {
-        return ruidosidad;
+    public String getLoudness() {
+        return loudness;
     }
 
-    public void setRuidosidad(String ruidosidad) {
-        this.ruidosidad = ruidosidad;
+    public void setLoudness(String loudness) {
+        this.loudness = loudness;
     }
 
-    public String getModo() {
-        return modo;
+    public String getMode() {
+        return mode;
     }
 
-    public void setModo(String modo) {
-        this.modo = modo;
+    public void setMode(String mode) {
+        this.mode = mode;
     }
 
-    public String getHablacion() {
-        return hablacion;
+    public String getSpeechiness() {
+        return speechiness;
     }
 
-    public void setHablacion(String hablacion) {
-        this.hablacion = hablacion;
+    public void setSpeechiness(String speechiness) {
+        this.speechiness = speechiness;
     }
 
-    public String getAcustica() {
-        return acustica;
+    public String getAcousticness() {
+        return acousticness;
     }
 
-    public void setAcustica(String acustica) {
-        this.acustica = acustica;
+    public void setAcousticness(String acousticness) {
+        this.acousticness = acousticness;
     }
 
-    public String getInstrumental() {
-        return instrumental;
+    public String getInstrumentalness() {
+        return instrumentalness;
     }
 
-    public void setInstrumental(String instrumental) {
-        this.instrumental = instrumental;
+    public void setInstrumentalness(String instrumentalness) {
+        this.instrumentalness = instrumentalness;
     }
 
-    public String getViveza() {
-        return viveza;
+    public String getLiveness() {
+        return liveness;
     }
 
-    public void setViveza(String viveza) {
-        this.viveza = viveza;
+    public void setLiveness(String liveness) {
+        this.liveness = liveness;
     }
 
     public String getValence() {
@@ -252,21 +252,11 @@ public class Cancion {
         this.tempo = tempo;
     }
 
-    public String getTime_sig() {
-        return time_sig;
+    public String getTime_signature() {
+        return time_signature;
     }
 
-    public void setTime_sig(String time_sig) {
-        this.time_sig = time_sig;
+    public void setTime_signature(String time_signature) {
+        this.time_signature = time_signature;
     }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Cancion cancion = (Cancion) o;
-        return Objects.equals(id, cancion.id);
-    }
-
 }

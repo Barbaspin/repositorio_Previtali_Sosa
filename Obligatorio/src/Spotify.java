@@ -341,21 +341,23 @@ public class Spotify {
                 LocalDate tempFecha = fechaInicioDate.plusDays(i);
                 //para usar esta fecha en el hash, la pasamos a String
                 String tempFechaString = tempFecha.toString();
-                //conseguimos la lista de canciones en esa fecha
-                MyLinkedListImpl<Cancion> cancionesFecha = ord.getHashFechas().get(tempFechaString);
+                if (ord.getHashFechas().contains(tempFechaString)){
+                    //conseguimos la lista de canciones en esa fecha
+                    MyLinkedListImpl<Cancion> cancionesFecha = ord.getHashFechas().get(tempFechaString);
 
-                //por cada cancion de esta fecha
-                for (int j = 0; j < cancionesFecha.size(); j++) {
-                    Cancion tempCancion = cancionesFecha.get(j);
-                    //si aun no revisamos esta cancion, la revisa
-                    if (!cancionesRepetidas.contains(tempCancion.getId())) {
-                        //la agregamos al hash de canciones revisadas
-                        cancionesRepetidas.put(tempCancion.getId(), null);
-                        Float tempoCancion = Float.parseFloat(tempCancion.getTempo());
-                        //vemos si el tempo de la cancion esta entre los buscados
-                        if (tempo1Float < tempoCancion && tempoCancion < tempo2Float) {
-                            //si cumple con esto, aumentamos en 1 la cantidad de canciones que cumplen lo requerido
-                            contadorTempo++;
+                    //por cada cancion de esta fecha
+                    for (int j = 0; j < cancionesFecha.size(); j++) {
+                        Cancion tempCancion = cancionesFecha.get(j);
+                        //si aun no revisamos esta cancion, la revisa
+                        if (!cancionesRepetidas.contains(tempCancion.getId())) {
+                            //la agregamos al hash de canciones revisadas
+                            cancionesRepetidas.put(tempCancion.getId(), null);
+                            Float tempoCancion = Float.parseFloat(tempCancion.getTempo());
+                            //vemos si el tempo de la cancion esta entre los buscados
+                            if (tempo1Float < tempoCancion && tempoCancion < tempo2Float) {
+                                //si cumple con esto, aumentamos en 1 la cantidad de canciones que cumplen lo requerido
+                                contadorTempo++;
+                            }
                         }
                     }
                 }
