@@ -341,6 +341,7 @@ public class Spotify {
                 LocalDate tempFecha = fechaInicioDate.plusDays(i);
                 //para usar esta fecha en el hash, la pasamos a String
                 String tempFechaString = tempFecha.toString();
+                //revisamos que esta fecha contenga lista de canciones
                 if (ord.getHashFechas().contains(tempFechaString)){
                     //conseguimos la lista de canciones en esa fecha
                     MyLinkedListImpl<Cancion> cancionesFecha = ord.getHashFechas().get(tempFechaString);
