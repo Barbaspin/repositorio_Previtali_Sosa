@@ -1,4 +1,5 @@
 import Exceptions.DateOutOFBounds;
+import Exceptions.DatosDesordenados;
 import uy.edu.um.prog2.adt.HashCode.HashTable;
 import uy.edu.um.prog2.adt.HashCode.HashTableImpl;
 import uy.edu.um.prog2.adt.HashCode.Node;
@@ -24,18 +25,14 @@ public class Spotify {
 
 
     //consultas
-    public void consultaTop10PaisFecha(String pais,String fecha) {
+    public void consultaTop10PaisFecha(String pais,String fecha) throws DateOutOFBounds{
         LocalDate testFecha = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if (testFecha.isBefore(primerFecha) || testFecha.isAfter(ultimaFecha) || !this.ord.getHashFechas().contains(fecha)) {
-            try {
                 throw new DateOutOFBounds();
-            } catch (DateOutOFBounds e) {
-                System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
-            }
         } else {
             //creamos un hash donde meter el top 10
             Node<String, Cancion> nodo = new Node<>(null, null);
-            HashTable<String, Cancion> hashTop = new HashTableImpl<>(nodo, 20);
+            HashTableImpl<String, Cancion> hashTop = new HashTableImpl<>(nodo, 20);
             //obtenemos la posicion de daily_rank
             MyLinkedListImpl<Cancion> fechaTemp = ord.getHashFechas().get(fecha);
             int j = 0;
@@ -51,28 +48,27 @@ public class Spotify {
                 }
 
             }
-            //obtenemos las posiciones de nombre ,artista
 
-            for (int i = 1; i < 11; i++) {
+            if (hashTop.getCantidadAgregados()!=0) {
+                //obtenemos las posiciones de nombre ,artista
+                for (int i = 1; i < 11; i++) {
 //            System.out.println("Top" + i + ": " + hashTop.get(i2).getNombre());
-                String i2 = Integer.toString(i);
-                System.out.println("\n top " + i + "- ");
-                System.out.println("\tNombre de la cancion: " + hashTop.get(i2).getNombre());
-                System.out.println("\tNombre del/los artista/s: " + hashTop.get(i2).getArtistas());
+                    String i2 = Integer.toString(i);
+                    System.out.println("\n top " + i + "- ");
+                    System.out.println("\tNombre de la cancion: " + hashTop.get(i2).getNombre());
+                    System.out.println("\tNombre del/los artista/s: " + hashTop.get(i2).getArtistas());
+                }
+            }else{
+                System.out.println("El país no existe, intente nuevamente");
             }
-
         }
     }
 
 
-    public void consultaMasTop50(String fecha) {
+    public void consultaMasTop50(String fecha) throws DateOutOFBounds {
         LocalDate testFecha = LocalDate.parse(fecha, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if (testFecha.isBefore(primerFecha) || testFecha.isAfter(ultimaFecha)|| !this.ord.getHashFechas().contains(fecha)) {
-            try {
                 throw new DateOutOFBounds();
-            } catch (DateOutOFBounds e) {
-                System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
-            }
         } else {
             //conseguimos la lista de canciones en esa fecha
             MyLinkedListImpl<Cancion> cancionesFecha = ord.getHashFechas().get(fecha);
@@ -158,24 +154,16 @@ public class Spotify {
         }
     }
 
-    public void consultaMasArtistasTop50(String fechaInicio,String fechaFin){
+    public void consultaMasArtistasTop50(String fechaInicio,String fechaFin) throws DatosDesordenados,DateOutOFBounds{
         LocalDate fechaInicioDate = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate fechaFinDate = LocalDate.parse(fechaFin, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         // Para aumentar la cantidad de dias se hace asi
         // LocalDate fechaFinal= fechaInicial.plusDays(CantDias);
         if (fechaInicioDate.isBefore(primerFecha) || fechaFinDate.isAfter(ultimaFecha)){
-            try {
                 throw new DateOutOFBounds();
-            } catch (DateOutOFBounds e) {
-                System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
-            }
         }else if(fechaInicioDate.isAfter(fechaFinDate)){
-            try {
-                throw new DateOutOFBounds();
-            } catch (DateOutOFBounds e) {
-                System.out.println("La primer fecha es mayor que la segunda, intente nuevamente");
-            }
+                throw new DatosDesordenados();
         } else{
             //creamos un hash con la cantidad de veces que se repite el artista en el top 50
             Node<String, Integer> nodo = new Node<>(null, null);
@@ -272,14 +260,10 @@ public class Spotify {
         }
     }
 
-    public void cantidadArtistaEnFecha(String artista,String fechaPedida){
+    public void cantidadArtistaEnFecha(String artista,String fechaPedida) throws DateOutOFBounds{
         LocalDate testFecha = LocalDate.parse(fechaPedida, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         if (testFecha.isBefore(primerFecha) || testFecha.isAfter(ultimaFecha)|| !this.ord.getHashFechas().contains(fechaPedida)) {
-            try {
-                throw new DateOutOFBounds();
-            } catch (DateOutOFBounds e) {
-                System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
-            }
+            throw new DateOutOFBounds();
         } else {
             int cantidadAparecido = 0;
             //conseguimos la lista de canciones en esa fecha
@@ -302,7 +286,7 @@ public class Spotify {
         }
     }
 
-    public void cantidadTempo(String tempo1, String tempo2, String fecha1, String fecha2) {
+    public void cantidadTempo(String tempo1, String tempo2, String fecha1, String fecha2) throws DateOutOFBounds,DatosDesordenados {
         int contadorTempo = 0;
         //guardamos los tempos como Integers
         float tempo1Float = Float.parseFloat(tempo1);
@@ -312,21 +296,10 @@ public class Spotify {
         LocalDate fechaFinDate = LocalDate.parse(fecha2, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         if (fechaInicioDate.isBefore(primerFecha) || fechaFinDate.isAfter(ultimaFecha)) {
-            try {
                 throw new DateOutOFBounds();
-            } catch (DateOutOFBounds e) {
-                System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
-            }
-        } else if (fechaInicioDate.isAfter(fechaFinDate)) {
-            try {
-                throw new DateOutOFBounds();
-            } catch (DateOutOFBounds e) {
-                System.out.println("La primer fecha es mayor que la segunda, intente nuevamente");
-            }
-        } else if (tempo2Float < tempo1Float) {
-            System.out.println("El primer tempo es mayor que el segundo, intente nuevamente");
+        } else if (fechaInicioDate.isAfter(fechaFinDate) || tempo2Float < tempo1Float) {
+            throw new DatosDesordenados();
         } else {
-
 
             //creamos un hash con las canciones que revisamos, el Value del nodo no se va a modificar
             Node<String, Integer> nodo = new Node<>(null, null);
@@ -398,9 +371,17 @@ public class Spotify {
                 System.out.println("Ingrese la fecha (YYYY-MM-DD)");
                 String fecha = scanner.nextLine();
                 if (pais.toLowerCase().equals("mundial")){
-                    this.consultaTop10PaisFecha("",fecha);
+                    try {
+                        this.consultaTop10PaisFecha("",fecha);
+                    } catch (DateOutOFBounds e) {
+                        System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                    }
                 }else{
-                    this.consultaTop10PaisFecha(pais,fecha);
+                    try {
+                        this.consultaTop10PaisFecha(pais,fecha);
+                    } catch (DateOutOFBounds e) {
+                        System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                    }
                 }
                 this.menu();
                 break;
@@ -408,7 +389,11 @@ public class Spotify {
                 scanner.reset();
                 System.out.println("Ingrese la fecha (YYYY-MM-DD)");
                 String fechaConsulta = scanner.nextLine();
-                this.consultaMasTop50(fechaConsulta);
+                try {
+                    this.consultaMasTop50(fechaConsulta);
+                } catch (DateOutOFBounds e) {
+                    System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                }
                 this.menu();
                 break;
             case "3":
@@ -418,7 +403,13 @@ public class Spotify {
                 scanner.reset();
                 System.out.println("Ingrese la segunda fecha (YYYY-MM-DD)");
                 String fechaFin = scanner.nextLine();
-                this.consultaMasArtistasTop50(fechaInicio,fechaFin);
+                try {
+                    this.consultaMasArtistasTop50(fechaInicio,fechaFin);
+                } catch (DatosDesordenados e) {
+                    System.out.println("La primer fecha es mayor que la segunda, intente nuevamente");
+                } catch (DateOutOFBounds e) {
+                    System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                }
                 this.menu();
                 break;
             case "4":
@@ -428,7 +419,11 @@ public class Spotify {
                 scanner.reset();
                 System.out.println("Ingrese la fecha (YYYY-MM-DD)");
                 String fechaPedida = scanner.nextLine();
-                this.cantidadArtistaEnFecha(artista,fechaPedida);
+                try {
+                    this.cantidadArtistaEnFecha(artista,fechaPedida);
+                } catch (DateOutOFBounds e) {
+                    System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                }
                 this.menu();
                 break;
             case "5":
@@ -443,7 +438,12 @@ public class Spotify {
                 scanner.reset();
                 System.out.println("Ingrese la segunda fecha (YYYY-MM-DD)");
                 String fecha2 = scanner.nextLine();
-                this.cantidadTempo(tempo1,tempo2,fecha1,fecha2);
+                try {
+                    this.cantidadTempo(tempo1,tempo2,fecha1,fecha2);
+                } catch (DateOutOFBounds e) {
+                    System.out.println("La fecha indicada no se encuentra entre los registros, intente nuevamente");
+                } catch (DatosDesordenados e) {
+                    System.out.println("El primer dato es mayor que el segundo, intente nuevamente");                }
                 this.menu();
                 break;
             case "6":
