@@ -9,6 +9,7 @@ PROCESOS DE CARGA
 
 ![Diagrama Clases](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/eeb91366-8f95-4b81-9206-59179e8f29a7)
 
+![image](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061951/c24953a1-f50b-4d5d-b9b2-f8222c3c2b43)
 
 REALIZACIóN DE LOS REPORTES
 
