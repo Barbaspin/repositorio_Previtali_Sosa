@@ -18,6 +18,7 @@ REALIZACIóN DE LOS REPORTES
 
   REPORTE TOP 10 PAIS FECHA
     Este reporte busca que la fecha indicada se encuentre en el hash y obtiene la lista de canciones en esa fecha. El reporte se encarga de buscar las canciones que se encuentren en el top 10 y que el país coincida con el país pedido. Para esto creamos un hash donde la clave es la posición. Para finalizar, la consulta busca en el hash las posiciones del ranking de manera creciente, y en cada paso muestra los datos solicitados de la canción.
+![image](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/74572625-084d-462b-9ba5-f40bc08d28c4)
 
 
 
