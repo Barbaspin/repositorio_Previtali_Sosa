@@ -7,6 +7,9 @@ PROCESOS DE CARGA
   A la hora de guardarla se verifica la existencia de una lista con la clave fecha en el hash, si esta no existe se crea, y se le agrega la instancia de Cancion a la lista.
 
 
+![Diagrama Clases](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/eeb91366-8f95-4b81-9206-59179e8f29a7)
+
+
 REALIZACIóN DE LOS REPORTES
 
   REPORTE TOP 10 PAIS FECHA
