@@ -8,16 +8,21 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 
 public class OrdenarCSV {
-
-    //es un hash con key pais, dentro tiene hashes con key fecha y dentro tiene listas
-    HashTable<String,MyLinkedListImpl<Cancion>> hashFechas;
+    //es un hash con key fecha, dentro tiene una lista con Canciones
+    private HashTable<String,MyLinkedListImpl<Cancion>> hashFechas;
+    private LocalDate fechaMinD;
+    private LocalDate fechaMaxD;
 
     //constructor
     public OrdenarCSV(){
+        fechaMaxD = LocalDate.parse("2023-12-25", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        fechaMinD = LocalDate.parse("2023-12-25", DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         Node<String,MyLinkedListImpl<Cancion>> nodo= new Node<>(null,null);
         this.hashFechas = new HashTableImpl<>(nodo,500);
         String inputFilePath = "universal_top_spotify_songs.csv"; // Ruta del archivo CSV de entrada
@@ -37,33 +42,22 @@ public class OrdenarCSV {
                     hashFechas.put(fechaTemp,nuevaFecha);
                 }
                 hashFechas.get(fechaTemp).add(tempCancion);
+                //buscamos cuales son la primer y ultima fecha en el csv
+                if (!fechaTemp.equals("snapshot_date")){
+                    LocalDate fechaComparar = LocalDate.parse(fechaTemp, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    if (fechaComparar.isBefore(fechaMinD)){
+                        fechaMinD = fechaComparar;
+                    } else if (fechaComparar.isAfter(fechaMaxD)) {
+                        fechaMaxD = fechaComparar;
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
-//        //leer csv guarda en una lista las canciones con sus atributos
-//        LeerCSV leerCsv = new LeerCSV();
-//        MyLinkedListImpl<Cancion> data = leerCsv.getDatos();
-//        Node<String,MyLinkedListImpl<Cancion>> nodo= new Node<>(null,null);
-//        this.hashFechas = new HashTableImpl<>(nodo,500);
-//        this.fila0 = data.get(0);
-//        for (int i = 1; i < data.size(); i++){
-//
-////            LocalTime tiempo = LocalTime.now();
-//
-//            Cancion tempCancion = data.get(i);
-//            String fechaTemp = tempCancion.getFecha();
-//            if (!hashFechas.contains(fechaTemp)){
-//                MyLinkedListImpl<Cancion> nuevaFecha = new MyLinkedListImpl<>();
-//                hashFechas.put(fechaTemp,nuevaFecha);
-//            }
-//            hashFechas.get(fechaTemp).add(tempCancion);
-//
-////            Duration diferencia = Duration.between(tiempo,LocalTime.now());
-////            System.out.println("nanosegundos: " + diferencia.getNano());
-//
+
 
 
 
@@ -71,8 +65,21 @@ public class OrdenarCSV {
     public HashTable<String, MyLinkedListImpl<Cancion>> getHashFechas() {
         return hashFechas;
     }
-
     public void setHashFechas(HashTable<String, MyLinkedListImpl<Cancion>> hashFechas) {
         this.hashFechas = hashFechas;
+    }
+
+    public LocalDate getFechaMinD() {
+        return fechaMinD;
+    }
+    public void setFechaMinD(LocalDate fechaMinD) {
+        this.fechaMinD = fechaMinD;
+    }
+
+    public LocalDate getFechaMaxD() {
+        return fechaMaxD;
+    }
+    public void setFechaMaxD(LocalDate fechaMaxD) {
+        this.fechaMaxD = fechaMaxD;
     }
 }

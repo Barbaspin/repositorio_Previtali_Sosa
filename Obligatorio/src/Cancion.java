@@ -31,6 +31,7 @@ public class Cancion {
     private String time_signature;
 
 
+    //constructor
     public Cancion(MyLinkedListImpl<String> lista) {
         this.id = lista.get(0);
         this.nombre =lista.get(1);
@@ -60,10 +61,13 @@ public class Cancion {
 
     }
 
+
+
+    //getters y setters
+
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
@@ -71,7 +75,6 @@ public class Cancion {
     public String getNombre() {
         return nombre;
     }
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -79,7 +82,6 @@ public class Cancion {
     public String getArtistas() {
         return artistas;
     }
-
     public void setArtistas(String artistas) {
         this.artistas = artistas;
     }
@@ -87,7 +89,6 @@ public class Cancion {
     public String getRank() {
         return rank;
     }
-
     public void setRank(String rank) {
         this.rank = rank;
     }
@@ -95,7 +96,6 @@ public class Cancion {
     public String getDaily_movement() {
         return daily_movement;
     }
-
     public void setDaily_movement(String daily_movement) {
         this.daily_movement = daily_movement;
     }
@@ -103,7 +103,6 @@ public class Cancion {
     public String getWeekly_movement() {
         return weekly_movement;
     }
-
     public void setWeekly_movement(String weekly_movement) {
         this.weekly_movement = weekly_movement;
     }
@@ -111,7 +110,6 @@ public class Cancion {
     public String getPais() {
         return pais;
     }
-
     public void setPais(String pais) {
         this.pais = pais;
     }
@@ -119,7 +117,6 @@ public class Cancion {
     public String getFecha() {
         return fecha;
     }
-
     public void setFecha(String fecha) {
         this.fecha = fecha;
     }
@@ -127,7 +124,6 @@ public class Cancion {
     public String getPopularity() {
         return popularity;
     }
-
     public void setPopularity(String popularity) {
         this.popularity = popularity;
     }
@@ -135,7 +131,6 @@ public class Cancion {
     public String getIs_explicit() {
         return is_explicit;
     }
-
     public void setIs_explicit(String is_explicit) {
         this.is_explicit = is_explicit;
     }
@@ -143,7 +138,6 @@ public class Cancion {
     public String getDuration_ms() {
         return duration_ms;
     }
-
     public void setDuration_ms(String duration_ms) {
         this.duration_ms = duration_ms;
     }
@@ -151,7 +145,6 @@ public class Cancion {
     public String getAlbum_name() {
         return album_name;
     }
-
     public void setAlbum_name(String album_name) {
         this.album_name = album_name;
     }
@@ -159,7 +152,6 @@ public class Cancion {
     public String getAlbum_release_date() {
         return album_release_date;
     }
-
     public void setAlbum_release_date(String album_release_date) {
         this.album_release_date = album_release_date;
     }
@@ -167,7 +159,6 @@ public class Cancion {
     public String getDanceability() {
         return danceability;
     }
-
     public void setDanceability(String danceability) {
         this.danceability = danceability;
     }
@@ -175,7 +166,6 @@ public class Cancion {
     public String getEnergy() {
         return energy;
     }
-
     public void setEnergy(String energy) {
         this.energy = energy;
     }
@@ -183,7 +173,6 @@ public class Cancion {
     public String getKey() {
         return key;
     }
-
     public void setKey(String key) {
         this.key = key;
     }
@@ -191,7 +180,6 @@ public class Cancion {
     public String getLoudness() {
         return loudness;
     }
-
     public void setLoudness(String loudness) {
         this.loudness = loudness;
     }
@@ -199,7 +187,6 @@ public class Cancion {
     public String getMode() {
         return mode;
     }
-
     public void setMode(String mode) {
         this.mode = mode;
     }
@@ -207,7 +194,6 @@ public class Cancion {
     public String getSpeechiness() {
         return speechiness;
     }
-
     public void setSpeechiness(String speechiness) {
         this.speechiness = speechiness;
     }
@@ -215,7 +201,6 @@ public class Cancion {
     public String getAcousticness() {
         return acousticness;
     }
-
     public void setAcousticness(String acousticness) {
         this.acousticness = acousticness;
     }
@@ -223,7 +208,6 @@ public class Cancion {
     public String getInstrumentalness() {
         return instrumentalness;
     }
-
     public void setInstrumentalness(String instrumentalness) {
         this.instrumentalness = instrumentalness;
     }
@@ -231,7 +215,6 @@ public class Cancion {
     public String getLiveness() {
         return liveness;
     }
-
     public void setLiveness(String liveness) {
         this.liveness = liveness;
     }
@@ -239,7 +222,6 @@ public class Cancion {
     public String getValence() {
         return valence;
     }
-
     public void setValence(String valence) {
         this.valence = valence;
     }
@@ -247,7 +229,6 @@ public class Cancion {
     public String getTempo() {
         return tempo;
     }
-
     public void setTempo(String tempo) {
         this.tempo = tempo;
     }
@@ -255,7 +236,6 @@ public class Cancion {
     public String getTime_signature() {
         return time_signature;
     }
-
     public void setTime_signature(String time_signature) {
         this.time_signature = time_signature;
     }
