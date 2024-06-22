@@ -1,6 +1,5 @@
   DIAGRAMA UML DE CLASES
-![Diagrama Clases](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/eeb91366-8f95-4b81-9206-59179e8f29a7)
-
+![DiagramaObligatorio](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/78d1b182-71c8-43ea-be9a-92cdb4b9494e)
 
 BREVE DESCRIPCIóN DE LOS PROCESOS DE CARGA Y REALIZACION DE LOS REPORTES
 
@@ -9,6 +8,7 @@ PROCESOS DE CARGA
   La clase OrdenarCSV se encarga de leer los datos del archivo csv y separar cada fila del archivo como una canción diferente, con sus atributos correspondientes (nombre, artistas, etc). Al separar las canciones, estas se guardan en un hash que tiene como clave la fecha en la que se guardaron los datos de la cancion, y el dato que guarda es una lista que contiene las canciones antes mencionadas. Esta manera de ordenarla facilitar las consultas, ya que estas dependen de la fecha que se quiera consultar, y nos brinda una fácil obtención de las canciones.
   Para cargar los datos del csv, creamos instancias de Cancion, estas las creamos usando las filas del csv guardadas como un arrays ,separando cada value utilizando split("\",\""), el constructor se encarga de leer el array y crear la instancia.
   A la hora de guardarla se verifica la existencia de una lista con la clave fecha en el hash, si esta no existe se crea, y se le agrega la instancia de Cancion a la lista.
+  También busca cuales son la primer y última fecha registradas en el csv, para comparaciones en las demás consultas
 
 ![tiempo leer csv y guardarlo](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/080f4728-9765-48a1-9159-58341234603e)
 ![image](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061951/c24953a1-f50b-4d5d-b9b2-f8222c3c2b43)
