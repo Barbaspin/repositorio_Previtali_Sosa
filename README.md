@@ -35,7 +35,6 @@ Los tiempos mostrados a continuacion son resultado de un ejemplo de uso de cada 
     
 ![image](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/74572625-084d-462b-9ba5-f40bc08d28c4)
 
-#### MEMORIA OCUPADA
 
 
 ###  REPORTE TOP 5 CANCIONES QUE MÁS APARECEN EN EL TOP 50
@@ -47,7 +46,6 @@ Los tiempos mostrados a continuacion son resultado de un ejemplo de uso de cada 
     
 ![Tiempo Consulta top 50](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/569dee18-5429-4978-97f1-9618e71a5676)
 
-#### MEMORIA OCUPADA
 
 ###  REPORTE TOP 7 ARTISTAS EN UN RANGO DE FECHAS
     Este reporte busca que la fecha indicada se encuentre en el hash y obtiene la lista de canciones de la primer fecha.
@@ -59,7 +57,6 @@ Los tiempos mostrados a continuacion son resultado de un ejemplo de uso de cada 
   
 ![image](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/6e3424dc-8a12-4aba-80cd-e9349810f222)
 
-#### MEMORIA OCUPADA
 
 
  ### REPORTE CANTIDAD DE VECES QUE APARECE UN ARTISTA
@@ -71,7 +68,6 @@ Los tiempos mostrados a continuacion son resultado de un ejemplo de uso de cada 
   
 ![tiempo consulta cuantas veces aparece artista](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/93ca6b19-3645-42d9-b84b-addada93b9af)
 
-#### MEMORIA OCUPADA
 
 
 ###  REPORTE CANTIDAD DE CANCIONES CON UN TEMPO ESPECIFICO
@@ -83,7 +79,8 @@ Los tiempos mostrados a continuacion son resultado de un ejemplo de uso de cada 
   
 ![image](https://github.com/Barbaspin/repositorio_Previtali_Sosa/assets/169061200/499a0c23-ba6c-4e1c-b0ea-1888c6a377d7)
 
-#### MEMORIA OCUPADA
+
+
 
 
 
