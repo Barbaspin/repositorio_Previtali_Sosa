@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="6fd35b21-ce82-47c1-a91f-d3abd9c0fd76" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Spotify.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Spotify.java" afterDir="false" />
     </list>
     <list id="a5afd2a0-edf5-45b5-a372-723100f39d5c" name="Changes by Barbaspin" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,24 +36,27 @@
     <option name="showLibraryContents" value="true" />
     <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.LeerCSV.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Spotify.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/aless/repositorio_git/repositorio_Previtali_Sosa/Obligatorio&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.LeerCSV.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.Spotify.executor": "Profiler#1",
+    "JUnit.TestConsulta1.TestConsultaPais.executor": "Run",
+    "JUnit.TestConsulta1.TestTop5Canciones.executor": "Run",
+    "JUnit.TestConsulta1.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/aless/repositorio_git/repositorio_Previtali_Sosa/Obligatorio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\aless\repositorio_git\repositorio_Previtali_Sosa\Obligatorio" />
@@ -66,8 +70,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestConsulta1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Obligatorio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestConsulta1" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestConsulta1.TestConsultaPais" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Obligatorio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestConsulta1" />
+      <option name="METHOD_NAME" value="TestConsultaPais" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestConsulta1.TestTop5Canciones" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Obligatorio" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestConsulta1" />
+      <option name="METHOD_NAME" value="TestTop5Canciones" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestConsulta1" />
+        <item itemvalue="JUnit.TestConsulta1.TestTop5Canciones" />
+        <item itemvalue="JUnit.TestConsulta1.TestConsultaPais" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
@@ -96,11 +132,26 @@
       <workItem from="1718718603736" duration="8216000" />
       <workItem from="1718801404572" duration="346000" />
       <workItem from="1718886261423" duration="3560000" />
-      <workItem from="1718892262126" duration="1817000" />
+      <workItem from="1718892262126" duration="4671000" />
+      <workItem from="1718977322413" duration="433000" />
+      <workItem from="1718978719563" duration="12000" />
+      <workItem from="1718979154802" duration="2839000" />
+      <workItem from="1719098782473" duration="2241000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Spotify.java</url>
+          <line>401</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
